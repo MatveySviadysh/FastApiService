@@ -4,10 +4,9 @@ WORKDIR /app
 
 COPY FastApiService/requirements.txt /app/
 
+RUN pip install --default-timeout=100 -r requirements.txt
 
-RUN pip install -r requirements.txt
-
-COPY . /app/
+COPY FastApiService/app /app
 
 EXPOSE 8000
 
