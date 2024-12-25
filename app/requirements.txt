@@ -42,3 +42,5 @@ uvicorn==0.32.0
 uvloop==0.21.0
 watchfiles==0.24.0
 websockets==14.1
+redis==5.0.1
+fastapi-redis-cache==0.2.5

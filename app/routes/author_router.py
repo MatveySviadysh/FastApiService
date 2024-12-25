@@ -1,12 +1,14 @@
+import json
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database.models import Author
 from schemas import AuthorCreate, AuthorUpdate, AuthorResponse
 from database.get_db import get_db
-
+import redis
 author_router = APIRouter()
 
+redis_client  = redis.Redis(host="localhost", port=6379, db=0)
 
 @author_router.post("/authors/", response_model=AuthorResponse)
 def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
