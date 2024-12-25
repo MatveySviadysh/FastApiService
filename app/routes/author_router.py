@@ -35,16 +35,12 @@ def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
 
 
 @author_router.get("/authors/", response_model=List[AuthorResponse])
-def get_authors(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def get_authors(db: Session = Depends(get_db)):
     """
     Получает список авторов из базы данных.
-    
-    - **skip**: количество авторов для пропуска (по умолчанию 0).
-    - **limit**: максимальное количество авторов для возврата (по умолчанию 10).
-    
     Возвращает список объектов `AuthorResponse`.
     """
-    authors = db.query(Author).offset(skip).limit(limit).all()
+    authors = db.query(Author).all()
     return authors
 
 
