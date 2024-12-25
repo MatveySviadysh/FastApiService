@@ -25,3 +25,16 @@ class Author(Base):
         if self.patronymic:
             return f"{self.last_name} {self.first_name} {self.patronymic}"
         return f"{self.last_name} {self.first_name}"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "patronymic": self.patronymic,
+            "photo": self.photo,
+            "bio": self.bio,
+            "birth_date": self.birth_date.isoformat() if self.birth_date else None,
+            "death_date": self.death_date.isoformat() if self.death_date else None,
+            "full_name": self.full_name
+        }
